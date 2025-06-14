@@ -22,8 +22,8 @@ streamlit==1.40.1
 streamlit-folium==0.22.1
 folium==0.18.0
 geopy==2.4.1
-osmnx==2.0.4          # ⬅️ upgraded from 1.9.4 to support Python 3.13
-pyproj==3.5.0
+osmnx==2.0.4
+pyproj==3.4.1          # ✅ supports PROJ 7.x (works on Streamlit Cloud)
 shapely==2.0.7
 Pillow==10.4.0
 numpy==1.24.4
