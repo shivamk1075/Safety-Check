@@ -184,20 +184,13 @@ def download_models():
 model_garbage = None
 model_building = None
 
-def load_yolo_models():
-    global model_garbage, model_building
-    if model_garbage is None or model_building is None:
-        with st.spinner("🔄 Downloading & loading YOLO models..."):
-            download_models()
-            model_garbage = torch.load('model_wts/garbage.pt', map_location='cpu')['model'].float().eval()
-            model_building = torch.load('model_wts/building.pt', map_location='cpu')['model'].float().eval()
-
-
 
 # Step 2: Object detection function
 def detect_objects(image_path):
-    load_yolo_models()
-
+    download_models()
+    model_garbage = torch.load('model_wts/garbage.pt', map_location='cpu')['model'].float().eval()
+    model_building = torch.load('model_wts/building.pt', map_location='cpu')['model'].float().eval()
+    
     img0 = cv2.imread(image_path)
     img = letterbox(img0, new_shape=416)[0]
     img = img[:, :, ::-1].transpose(2, 0, 1)

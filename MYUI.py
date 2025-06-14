@@ -16,8 +16,8 @@ from geopy.geocoders import Nominatim
 st.set_page_config(page_title="Illegal Site Predictor", layout="centered")
 # import preds
 # import combined
-from preds import predict_from_gps,load_classification_model
-from combined import detect_objects,load_yolo_models
+from preds import predict_from_gps
+from combined import detect_objects
 
 
 # load_classification_model()

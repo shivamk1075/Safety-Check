@@ -141,23 +141,17 @@ def download_class_model():
 #     from tensorflow.keras.models import load_model
 #     model = load_model(path)
 # Add this instead:
-model = None
 
-def load_classification_model():
-    global model
-    if model is None:
-        with st.spinner("🔄 Downloading & loading classification model..."):
-            path = download_class_model()
-            from tensorflow.keras.models import load_model
-            model = load_model(path)
-    return model
-
-
+model=none
 import numpy as np
 from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import load_model
 
 # def preprocess_image(img_path, target_size=(128, 128)):
 def preprocess_image(img_path, target_size=(224, 224)):
+    path=download_class_model()
+    model = load_model(path)
+
     img = Image.open(img_path).convert('RGB')
     img = img.resize(target_size)
     img_array = image.img_to_array(img) / 255.0
