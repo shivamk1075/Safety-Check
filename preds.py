@@ -107,24 +107,32 @@ import requests
 #                     if chunk:
 #                         f.write(chunk)
 import h5py
+from huggingface_hub import hf_hub_download
+# def download_class_model():
+#     url = "https://huggingface.co/EASYTOCODE99/SafetyModels/resolve/main/classModel.h5"
+#     os.makedirs("model_wts", exist_ok=True)
+#     path = "model_wts/classModel.h5"
+#     if not os.path.exists(path):
+#         with requests.get(url, stream=True) as r:
+#             with open(path, "wb") as f:
+#                 for chunk in r.iter_content(chunk_size=8192):
+#                     if chunk:
+#                         f.write(chunk)
+#     # Validate file
+#     try:
+#         with h5py.File(path, "r") as f:
+#             pass
+#     except Exception as e:
+#         os.remove(path)
+#         raise RuntimeError(f"Downloaded model file is invalid: {e}")
 
 def download_class_model():
-    url = "https://huggingface.co/EASYTOCODE99/SafetyModels/resolve/main/classModel.h5"
-    os.makedirs("model_wts", exist_ok=True)
-    path = "model_wts/classModel.h5"
-    if not os.path.exists(path):
-        with requests.get(url, stream=True) as r:
-            with open(path, "wb") as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    if chunk:
-                        f.write(chunk)
-    # Validate file
-    try:
-        with h5py.File(path, "r") as f:
-            pass
-    except Exception as e:
-        os.remove(path)
-        raise RuntimeError(f"Downloaded model file is invalid: {e}")
+    path = hf_hub_download(
+        repo_id="EASYTOCODE99/SafetyModels",
+        filename="classModel.h5",
+        cache_dir="model_wts"
+    )
+    return path
 
 
 # Show spinner during model load
