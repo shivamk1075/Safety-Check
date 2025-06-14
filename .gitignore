@@ -1,0 +1,17 @@
+# Ignore model weights folder
+model_wts/
+
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore temporary cache
+cache/
+
+# Ignore testing outputs or datasets
+# Testing/
+
+# Optional: ignore VSCode settings or system files
+.vscode/
+*.DS_Store
+Thumbs.db
