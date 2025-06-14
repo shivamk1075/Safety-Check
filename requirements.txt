@@ -1,6 +1,6 @@
 streamlit
-# streamlit-folium
-streamlit-folium==0.14.0
+streamlit-folium
+# streamlit-folium==0.14.0
 folium
 geopy
 osmnx
