@@ -135,11 +135,22 @@ def download_class_model():
     return path
 
 
-# Show spinner during model load
-with st.spinner("🔄 Downloading & loading classification model..."):
-    path=download_class_model()
-    from tensorflow.keras.models import load_model
-    model = load_model(path)
+# # Show spinner during model load
+# with st.spinner("🔄 Downloading & loading classification model..."):
+#     path=download_class_model()
+#     from tensorflow.keras.models import load_model
+#     model = load_model(path)
+# Add this instead:
+model = None
+
+def load_classification_model():
+    global model
+    if model is None:
+        with st.spinner("🔄 Downloading & loading classification model..."):
+            path = download_class_model()
+            from tensorflow.keras.models import load_model
+            model = load_model(path)
+    return model
 
 
 import numpy as np

@@ -174,11 +174,25 @@ def download_models():
                         if chunk:
                             f.write(chunk)
 
-# Spinner for loading
-with st.spinner("🔄 Downloading & loading YOLO models..."):
-    download_models()
-    model_garbage = torch.load('model_wts/garbage.pt', map_location='cpu')['model'].float().eval()
-    model_building = torch.load('model_wts/building.pt', map_location='cpu')['model'].float().eval()
+# # Spinner for loading
+# with st.spinner("🔄 Downloading & loading YOLO models..."):
+#     download_models()
+#     model_garbage = torch.load('model_wts/garbage.pt', map_location='cpu')['model'].float().eval()
+#     model_building = torch.load('model_wts/building.pt', map_location='cpu')['model'].float().eval()
+
+# Add lazy loading:
+model_garbage = None
+model_building = None
+
+def load_yolo_models():
+    global model_garbage, model_building
+    if model_garbage is None or model_building is None:
+        with st.spinner("🔄 Downloading & loading YOLO models..."):
+            download_models()
+            model_garbage = torch.load('model_wts/garbage.pt', map_location='cpu')['model'].float().eval()
+            model_building = torch.load('model_wts/building.pt', map_location='cpu')['model'].float().eval()
+
+
 
 # Step 2: Object detection function
 def detect_objects(image_path):
