@@ -16,7 +16,7 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 
-model=none
+model=None
 
 def fetch_spatial_features(lat, lng, row_num, radius=1500):
     center = Point(lng, lat)
