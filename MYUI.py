@@ -1,3 +1,10 @@
+import os
+os.system("pip install streamlit-folium")
+
+import streamlit as st
+from streamlit_folium import st_folium
+
+
 import streamlit as st
 import os
 from PIL import Image
