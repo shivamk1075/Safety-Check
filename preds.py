@@ -137,9 +137,9 @@ def download_class_model():
 
 # Show spinner during model load
 with st.spinner("🔄 Downloading & loading classification model..."):
-    download_class_model()
+    path=download_class_model()
     from tensorflow.keras.models import load_model
-    model = load_model("model_wts/classModel.h5")
+    model = load_model(path)
 
 
 import numpy as np
