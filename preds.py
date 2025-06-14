@@ -8,7 +8,15 @@ import osmnx as ox
 import pyproj
 from shapely.geometry import Point
 from shapely.ops import transform
+import streamlit as st
+import requests
+import h5py
+from huggingface_hub import hf_hub_download
+import numpy as np
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import load_model
 
+model=none
 
 def fetch_spatial_features(lat, lng, row_num, radius=1500):
     center = Point(lng, lat)
@@ -88,43 +96,7 @@ def fetch_and_save_tile(lat, lon, zoom, filename):
     else:
         print(f"⚠️ Failed to save tile: {filename}")
         return False
-
-
-# from tensorflow.keras.models import load_model
-
-# model = load_model("model_wts/classModel.h5")
-import streamlit as st
-import requests
-
-# def download_class_model():
-#     url = "https://huggingface.co/EASYTOCODE99/SafetyModels/resolve/main/classModel.h5"
-#     os.makedirs("model_wts", exist_ok=True)
-#     path = "model_wts/classModel.h5"
-#     if not os.path.exists(path):
-#         with requests.get(url, stream=True) as r:
-#             with open(path, "wb") as f:
-#                 for chunk in r.iter_content(chunk_size=8192):
-#                     if chunk:
-#                         f.write(chunk)
-import h5py
-from huggingface_hub import hf_hub_download
-# def download_class_model():
-#     url = "https://huggingface.co/EASYTOCODE99/SafetyModels/resolve/main/classModel.h5"
-#     os.makedirs("model_wts", exist_ok=True)
-#     path = "model_wts/classModel.h5"
-#     if not os.path.exists(path):
-#         with requests.get(url, stream=True) as r:
-#             with open(path, "wb") as f:
-#                 for chunk in r.iter_content(chunk_size=8192):
-#                     if chunk:
-#                         f.write(chunk)
-#     # Validate file
-#     try:
-#         with h5py.File(path, "r") as f:
-#             pass
-#     except Exception as e:
-#         os.remove(path)
-#         raise RuntimeError(f"Downloaded model file is invalid: {e}")
+    
 
 def download_class_model():
     path = hf_hub_download(
@@ -134,23 +106,8 @@ def download_class_model():
     )
     return path
 
-
-# # Show spinner during model load
-# with st.spinner("🔄 Downloading & loading classification model..."):
-#     path=download_class_model()
-#     from tensorflow.keras.models import load_model
-#     model = load_model(path)
-# Add this instead:
-
-model=none
-import numpy as np
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.models import load_model
-
 # def preprocess_image(img_path, target_size=(128, 128)):
 def preprocess_image(img_path, target_size=(224, 224)):
-    path=download_class_model()
-    model = load_model(path)
 
     img = Image.open(img_path).convert('RGB')
     img = img.resize(target_size)
@@ -166,7 +123,8 @@ def feature_vector_from_dict(row_dict):
     return np.array([[row_dict.get(k, 0) if row_dict.get(k) is not None else 0 for k in keys]])
 
 def predict_from_gps(lat, lon, row_num, zoom=17):
-    load_classification_model()
+    path=download_class_model()
+    model = load_model(path)
 
     filename = f"Testing/test_row_{row_num}_tile.jpg"
     tile_success = fetch_and_save_tile(lat, lon, zoom, filename)
