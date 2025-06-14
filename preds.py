@@ -97,7 +97,7 @@ import streamlit as st
 import requests
 
 def download_class_model():
-    url = "https://huggingface.co/your-username/your-repo/resolve/main/classModel.h5"
+    url = "https://huggingface.co/EASYTOCODE99/SafetyModels/resolve/main/classModel.h5"
     os.makedirs("model_wts", exist_ok=True)
     path = "model_wts/classModel.h5"
     if not os.path.exists(path):
