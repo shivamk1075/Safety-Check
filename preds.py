@@ -90,9 +90,29 @@ def fetch_and_save_tile(lat, lon, zoom, filename):
         return False
 
 
-from tensorflow.keras.models import load_model
+# from tensorflow.keras.models import load_model
 
-model = load_model("model_wts/classModel.h5")
+# model = load_model("model_wts/classModel.h5")
+import streamlit as st
+import requests
+
+def download_class_model():
+    url = "https://huggingface.co/your-username/your-repo/resolve/main/classModel.h5"
+    os.makedirs("model_wts", exist_ok=True)
+    path = "model_wts/classModel.h5"
+    if not os.path.exists(path):
+        with requests.get(url, stream=True) as r:
+            with open(path, "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+
+# Show spinner during model load
+with st.spinner("🔄 Downloading & loading classification model..."):
+    download_class_model()
+    from tensorflow.keras.models import load_model
+    model = load_model("model_wts/classModel.h5")
+
 
 import numpy as np
 from tensorflow.keras.preprocessing import image
