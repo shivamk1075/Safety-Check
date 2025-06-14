@@ -1,0 +1,16 @@
+streamlit
+streamlit-folium
+folium
+geopy
+osmnx
+pyproj
+shapely
+Pillow
+numpy
+tensorflow
+torch
+opencv-python
+requests
+matplotlib
+scipy
+huggingface-hub
