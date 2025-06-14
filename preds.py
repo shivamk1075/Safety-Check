@@ -172,6 +172,8 @@ def feature_vector_from_dict(row_dict):
     return np.array([[row_dict.get(k, 0) if row_dict.get(k) is not None else 0 for k in keys]])
 
 def predict_from_gps(lat, lon, row_num, zoom=17):
+    load_classification_model()
+
     filename = f"Testing/test_row_{row_num}_tile.jpg"
     tile_success = fetch_and_save_tile(lat, lon, zoom, filename)
 

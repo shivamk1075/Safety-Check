@@ -196,6 +196,8 @@ def load_yolo_models():
 
 # Step 2: Object detection function
 def detect_objects(image_path):
+    load_yolo_models()
+
     img0 = cv2.imread(image_path)
     img = letterbox(img0, new_shape=416)[0]
     img = img[:, :, ::-1].transpose(2, 0, 1)
