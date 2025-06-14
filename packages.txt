@@ -3,3 +3,4 @@ libgdal-dev
 libproj-dev
 proj-bin
 libgeos-dev
+libgl1
