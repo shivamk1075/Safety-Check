@@ -34,7 +34,7 @@ if option == "Enter Coordinates":
     lon = st.number_input("Longitude", format="%.6f")
 
 elif option == "Pin on Map":
-    st.markdown("👇Click on the map to drop a pin.")
+    st.markdown("Click on the map to drop a pin.")
 
     col_map, col_control = st.columns([2, 1])  # 2:1 ratio for layout
 
@@ -65,7 +65,7 @@ elif option == "Pin on Map":
         if map_data and map_data.get("last_clicked"):
             lat = map_data["last_clicked"]["lat"]
             lon = map_data["last_clicked"]["lng"]
-            st.success(f"📍 Selected Coordinates:\n`({lat:.6f}, {lon:.6f})`")
+            st.success(f"Selected Coordinates:\n`({lat:.6f}, {lon:.6f})`")
 
             if st.button("Predict Site Type"):
                 os.makedirs("Testing", exist_ok=True)
@@ -101,7 +101,7 @@ elif option == "Pin on Map":
 
 # Fallback for coordinate input mode
 if option == "Enter Coordinates":
-    if st.button("🔍 Predict Site Type"):
+    if st.button(" Predict Site Type"):
         if lat is not None and lon is not None:
             os.makedirs("Testing", exist_ok=True)
 
