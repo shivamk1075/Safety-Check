@@ -108,9 +108,11 @@ if option == "Enter Coordinates":
                 if score is None:
                     st.error("❌ Could not process this location.")
                 elif score > 0.5:
-                    st.error(f"🟥 Prediction: Illegal Site (Score: {score:.4f})")
+                    # st.error(f"🟥 Prediction: Illegal Site (Score: {score:.4f})")
+                    st.error(f"🟥 Prediction: Illegal Site")
                 else:
-                    st.success(f"🟩 Prediction: Legal Site (Score: {score:.4f})")
+                    # st.success(f"🟩 Prediction: Legal Site (Score: {score:.4f})")
+                    st.success(f"🟩 Prediction: Legal Site ")
 
                 img_path = f"Testing/test_row_1_tile.jpg"
                 if os.path.exists(img_path):
