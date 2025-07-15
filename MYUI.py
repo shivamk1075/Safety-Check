@@ -12,7 +12,7 @@ from streamlit_folium import st_folium
 import folium
 from geopy.geocoders import Nominatim
 
-st.set_page_config(page_title="Illegal Site Predictor", layout="centered")
+st.set_page_config(page_title="TerrainScan tool", layout="centered")
 
 from preds import predict_from_gps
 from combined import detect_objects
@@ -21,7 +21,7 @@ from combined import detect_objects
 # load_classification_model()
 # load_yolo_models()
 
-st.title("📍 Illegal Site Prediction Tool")
+st.title("TerrainScan tool")
 st.markdown("Choose a location by typing latitude/longitude or selecting a point on the map.")
 
 # Option selection
@@ -40,7 +40,7 @@ elif option == "Pin on Map":
 
     # Search bar
     with col_control:
-        st.subheader("🔍 Search a Location")
+        st.subheader("Search a Location")
         search_query = st.text_input("Enter location name (e.g., Varanasi, India):")
 
     # Default map center
@@ -89,7 +89,7 @@ elif option == "Pin on Map":
 
                         # Show counts
                         st.markdown(f"🗑️ **Garbage Sites Detected:** {garbage_count}")
-                        st.markdown(f"🏢 **Buildings Detected:** {building_count}")
+                        # st.markdown(f"🏢 **Buildings Detected:** {building_count}")
 
                         # st.image(Image.open(img_path), caption="Satellite Tile")
                 except Exception as e:
