@@ -34,7 +34,7 @@ if option == "Enter Coordinates":
     lon = st.number_input("Longitude", format="%.6f")
 
 elif option == "Pin on Map":
-    st.markdown("👇 Click on the map to drop a pin.")
+    st.markdown("👇Click on the map to drop a pin.")
 
     col_map, col_control = st.columns([2, 1])  # 2:1 ratio for layout
 
@@ -52,7 +52,7 @@ elif option == "Pin on Map":
         if location:
             lat_center, lon_center = location.latitude, location.longitude
         else:
-            st.warning("📍 Location not found. Showing default.")
+            st.warning("Location not found. Showing default.")
 
     with col_map:
         m = folium.Map(location=[lat_center, lon_center], zoom_start=14, tiles="Esri.WorldImagery")
@@ -67,17 +67,19 @@ elif option == "Pin on Map":
             lon = map_data["last_clicked"]["lng"]
             st.success(f"📍 Selected Coordinates:\n`({lat:.6f}, {lon:.6f})`")
 
-            if st.button("🔍 Predict Site Type"):
+            if st.button("Predict Site Type"):
                 os.makedirs("Testing", exist_ok=True)
 
                 try:
                     score = predict_from_gps(lat, lon, row_num=1)
                     if score is None:
-                        st.error("❌ Could not process this location.")
+                        st.error("Could not process this location.")
                     elif score > 0.5:
-                        st.error(f"🟥 Prediction: Illegal Site (Score: {score:.4f})")
+                        # st.error(f" Prediction: Illegal Site (Score: {score:.4f})")
+                        st.error(f"Prediction: Illegal Site ")
                     else:
-                        st.success(f"🟩 Prediction: Legal Site (Score: {score:.4f})")
+                        # st.success(f"Prediction: Legal Site (Score: {score:.4f})")
+                        st.success(f"Prediction: Legal Site ")
 
                     img_path = f"Testing/test_row_1_tile.jpg"
                     if os.path.exists(img_path):
@@ -88,14 +90,14 @@ elif option == "Pin on Map":
                         st.image(Image.open(output_img), caption="Detected Objects")
 
                         # Show counts
-                        st.markdown(f"🗑️ **Garbage Sites Detected:** {garbage_count}")
-                        # st.markdown(f"🏢 **Buildings Detected:** {building_count}")
+                        st.markdown(f" **Garbage Sites Detected:** {garbage_count}")
+                        # st.markdown(f" **Buildings Detected:** {building_count}")
 
                         # st.image(Image.open(img_path), caption="Satellite Tile")
                 except Exception as e:
                     st.exception(e)
         else:
-            st.warning("📌 Click on the map to choose a location.")
+            st.warning("Click on the map to choose a location.")
 
 # Fallback for coordinate input mode
 if option == "Enter Coordinates":
@@ -106,13 +108,13 @@ if option == "Enter Coordinates":
             try:
                 score = predict_from_gps(lat, lon, row_num=1)
                 if score is None:
-                    st.error("❌ Could not process this location.")
+                    st.error("Could not process this location.")
                 elif score > 0.5:
-                    # st.error(f"🟥 Prediction: Illegal Site (Score: {score:.4f})")
-                    st.error(f"🟥 Prediction: Illegal Site")
+                    # st.error(f"Prediction: Illegal Site (Score: {score:.4f})")
+                    st.error(f"Prediction: Illegal Site")
                 else:
-                    # st.success(f"🟩 Prediction: Legal Site (Score: {score:.4f})")
-                    st.success(f"🟩 Prediction: Legal Site ")
+                    # st.success(f"Prediction: Legal Site (Score: {score:.4f})")
+                    st.success(f" Prediction: Legal Site ")
 
                 img_path = f"Testing/test_row_1_tile.jpg"
                 if os.path.exists(img_path):
@@ -122,11 +124,11 @@ if option == "Enter Coordinates":
                     st.image(Image.open(output_img), caption="Detected Objects")
 
                     # Show counts
-                    st.markdown(f"🗑️ **Garbage Sites Detected:** {garbage_count}")
-                    st.markdown(f"🏢 **Buildings Detected:** {building_count}")
+                    st.markdown(f"**Garbage Sites Detected:** {garbage_count}")
+                    # st.markdown(f" **Buildings Detected:** {building_count}")
 
                     # st.image(Image.open(img_path), caption="Satellite Tile")
             except Exception as e:
                 st.exception(e)
         else:
-            st.warning("⚠️ Please enter valid coordinates.")
+            st.warning("Please enter valid coordinates.")
