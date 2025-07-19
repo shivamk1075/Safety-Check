@@ -41,21 +41,21 @@ elif option == "Pin on Map":
     # Search bar
     with col_control:
         st.subheader("Search a Location")
-        search_query = st.text_input("Enter location name (e.g., Varanasi, India):")
+        search_query = st.text_input("Enter location name (e.g., Varanasi, MBMC Dumping Ground,Ghazipur Landfill, Delhi):")
         # Predefined example places
-        example_locations = {
-            "MBMC Dumping Ground": (19.276365, 72.856438),
-            "Ghazipur Landfill, Delhi": (28.628722, 77.334504),
-            "Deonar Dumping Ground, Mumbai": (19.0605, 72.9180),
-            "Varanasi, India": (25.3176, 82.9739),
-        }
+        # example_locations = {
+        #     "MBMC Dumping Ground": (19.276365, 72.856438),
+        #     "Ghazipur Landfill, Delhi": (28.628722, 77.334504),
+        #     "Deonar Dumping Ground, Mumbai": (19.0605, 72.9180),
+        #     "Varanasi, India": (25.3176, 82.9739),
+        # }
 
-        st.markdown("#### Example Locations:")
-        for name, coords in example_locations.items():
-            if st.button(name):
-                lat_center, lon_center = coords
-                search_query = name  # simulate a search match
-                location = type("obj", (object,), {"latitude": lat_center, "longitude": lon_center})()
+        # st.markdown("#### Example Locations:")
+        # for name, coords in example_locations.items():
+        #     if st.button(name):
+        #         lat_center, lon_center = coords
+        #         search_query = name  # simulate a search match
+        #         location = type("obj", (object,), {"latitude": lat_center, "longitude": lon_center})()
 
 
     # Default map center
