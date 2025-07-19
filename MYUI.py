@@ -50,12 +50,12 @@ elif option == "Pin on Map":
             "Varanasi, India": (25.3176, 82.9739),
         }
 
-st.markdown("#### Example Locations:")
-for name, coords in example_locations.items():
-    if st.button(name):
-        lat_center, lon_center = coords
-        search_query = name  # simulate a search match
-        location = type("obj", (object,), {"latitude": lat_center, "longitude": lon_center})()
+        st.markdown("#### Example Locations:")
+        for name, coords in example_locations.items():
+            if st.button(name):
+                lat_center, lon_center = coords
+                search_query = name  # simulate a search match
+                location = type("obj", (object,), {"latitude": lat_center, "longitude": lon_center})()
 
 
     # Default map center
