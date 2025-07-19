@@ -22,7 +22,8 @@ from combined import detect_objects
 # load_yolo_models()
 
 st.title("TerrainScan tool")
-st.markdown("Choose a location by typing latitude/longitude or selecting a point on the map.")
+# st.markdown("Choose a location by typing latitude/longitude or selecting a point on the map.")
+st.markdown("Choose a location by selecting a point on the map.")
 
 # Option selection
 # option = st.radio("Select Input Mode:", ["Enter Coordinates", "Pin on Map"])
