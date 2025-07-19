@@ -105,7 +105,7 @@ elif option == "Pin on Map":
                         st.image(Image.open(output_img), caption="Detected Objects")
 
                         # Show counts
-                        st.markdown(f" **Garbage Sites Detected:** {garbage_count}")
+                        # st.markdown(f" **Garbage Sites Detected:** {garbage_count}")
                         # st.markdown(f" **Buildings Detected:** {building_count}")
 
                         # st.image(Image.open(img_path), caption="Satellite Tile")
@@ -139,7 +139,7 @@ if option == "Enter Coordinates":
                     st.image(Image.open(output_img), caption="Detected Objects")
 
                     # Show counts
-                    st.markdown(f"**Garbage Sites Detected:** {garbage_count}")
+                    # st.markdown(f"**Garbage Sites Detected:** {garbage_count}")
                     # st.markdown(f" **Buildings Detected:** {building_count}")
 
                     # st.image(Image.open(img_path), caption="Satellite Tile")
