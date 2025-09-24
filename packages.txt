@@ -1,12 +1,2 @@
-gdal-bin
-libgdal-dev
-libproj-dev
-proj-bin
-libgeos-dev
 libgl1
-unixodbc=2.3.11-2
-unixodbc-dev=2.3.11-2
-libodbc1=2.3.11-2
-libodbcinst2=2.3.11-2
-odbcinst=2.3.11-2
-odbcinst1debian2=2.3.11-2
+libgeos-dev
