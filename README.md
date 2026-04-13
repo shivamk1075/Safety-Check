@@ -1,10 +1,10 @@
-<img src="data/presentation/header_satellite.png" alt="Header image showing satellite detection" width="100%"/>
+<img src="data/DumpingHeader.png" alt="Header image showing satellite detection" width="100%"/>
 
 # Illegal Dumping Site Detector
 
 ### Using Deep Learning, satellite imagery, and spatial intelligence to identify illegal dumping sites
 
-_A smart location intelligence tool combining satellite imagery, OpenStreetMap data, and AI models. By [Your Name]_
+_A smart location intelligence tool combining satellite imagery, OpenStreetMap data, and AI models. By Shivam_
 
 **Illegal dumping** is a persistent environmental and public health challenge in cities and rural areas alike. Sites used for unauthorized waste disposal often go undetected for long periods — causing soil contamination, water pollution, and health hazards for nearby communities.
 
