@@ -183,15 +183,15 @@ With only 464 labeled samples, performance is solid — the strong ROC-AUC (0.84
 
 ### Examples
 
-_<img src="data/presentation/FrontendView.png" alt="Streamlit app interface with GPS input and map" width="70%"/>_
+_<img src="data/FrontendView.png" alt="Streamlit app interface with GPS input and map" width="70%"/>_
 
-#### Satellite Tile with Object Detection Overlays
+#### Search Location View
 
-_<img src="data/presentation/DetectionView.png" alt="Satellite tile with YOLO bounding boxes for garbage and buildings" width="70%"/>_
+_<img src="data/SearchLocation.png" alt="Satellite tile with YOLO bounding boxes for garbage and buildings" width="70%"/>_
 
 #### Legality Classification Output
 
-_<img src="data/presentation/ClassificationOutput.png" alt="Prediction score and legality verdict panel" width="70%"/>_
+_<img src="data/Predicted_Results.png" alt="Prediction score and legality verdict panel" width="70%"/>_
 
 ### Live Demo
  
