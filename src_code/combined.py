@@ -6,23 +6,22 @@ import cv2
 import numpy as np
 import streamlit as st
 
-# Add yolov7 folder to Python path
-YOLOV7_PATH = os.path.join(os.path.dirname(__file__), "yolov7")
+YOLOV7_PATH = os.path.join(os.path.dirname(__file__), "..", "yolov7")
 sys.path.insert(0, YOLOV7_PATH)
 
 from yolov7.utils.datasets import letterbox
 from yolov7.utils.general import non_max_suppression, scale_coords
 from yolov7.utils.plots import plot_one_box
 
-# Step 1: Download models from Hugging Face if not already present
 def download_models():
     urls = {
         "garbage.pt": "https://huggingface.co/EASYTOCODE99/SafetyModels/resolve/main/garbage.pt",
         "building.pt": "https://huggingface.co/EASYTOCODE99/SafetyModels/resolve/main/building.pt"
     }
-    os.makedirs("model_wts", exist_ok=True)
+    model_dir = os.path.join(os.path.dirname(__file__), "..", "model_wts")
+    os.makedirs(model_dir, exist_ok=True)
     for filename, url in urls.items():
-        path = os.path.join("model_wts", filename)
+        path = os.path.join(model_dir, filename)
         if not os.path.exists(path):
             with requests.get(url, stream=True) as r:
                 with open(path, "wb") as f:
@@ -34,11 +33,11 @@ model_garbage = None
 model_building = None
 
 
-# Step 2: Object detection function
 def detect_objects(image_path):
     download_models()
-    model_garbage = torch.load('model_wts/garbage.pt', map_location='cpu')['model'].float().eval()
-    model_building = torch.load('model_wts/building.pt', map_location='cpu')['model'].float().eval()
+    model_dir = os.path.join(os.path.dirname(__file__), "..", "model_wts")
+    model_garbage = torch.load(os.path.join(model_dir, 'garbage.pt'), map_location='cpu')['model'].float().eval()
+    model_building = torch.load(os.path.join(model_dir, 'building.pt'), map_location='cpu')['model'].float().eval()
     
     img0 = cv2.imread(image_path)
     img = letterbox(img0, new_shape=416)[0]

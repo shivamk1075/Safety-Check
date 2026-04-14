@@ -1,8 +1,8 @@
 <img src="data/DumpingHeader.png" alt="Header image showing satellite detection" width="80%"/>
 
-# Illegal Dumping Site Detector
+# DumpTrace - Dumping Site Detector
 
-### Using Deep Learning, satellite imagery, and spatial intelligence to identify illegal dumping sites
+### DumpTrace: Using Deep Learning, satellite imagery, and spatial intelligence to identify illegal dumping sites
 
 _A smart location intelligence tool combining satellite imagery, OpenStreetMap data, and AI models. By Shivam_
 
@@ -12,7 +12,7 @@ Traditional inspection-based monitoring is **slow, resource-intensive**, and rea
 
 ### Goal of the Project
 
-The goal was to build an interactive tool that, given a GPS coordinate, can **predict whether a location is being used as an illegal dumping site**.
+The goal was to build an interactive tool that, given a GPS coordinate, can **predict whether a location is being used as an dumping site**.
 
 The system combines:
 - **Visual signals** from satellite imagery (detected garbage, building density)
@@ -23,7 +23,7 @@ The system combines:
 
 - I used **YOLOv7** for object detection on satellite tiles:
   - A **garbage detection model** (`garbage.pt`) trained on the [Global Dumpsite Dataset](https://www.scidb.cn/en/detail?dataSetId=c85f3ef351c14842826b2e16ddd71097) (Sun & Yin, 2022) — a PASCAL VOC–format dataset covering four dumpsite categories across global satellite imagery, published alongside the Nature Communications paper _"Revealing influencing factors on global waste distribution via deep-learning based dumpsite detection"_
-  - A **building detection model** (`building.pt`) trained on satellite patches sourced from the [Illegal Buildings Detection dataset](https://github.com/vladostan/Dataset-for-illegal-buildings-detection-from-satellite) (Ostankovich et al., 2018) — 224×224 RGB tiles with two classes: `building` and `background`, covering urban and suburban environments from Russian cadastral map imagery
+  - A **building detection model** (`building.pt`) trained on satellite patches sourced from the [Buildings Detection dataset](https://github.com/vladostan/Dataset-for-illegal-buildings-detection-from-satellite) (Ostankovich et al., 2018) — 224×224 RGB tiles with two classes: `building` and `background`, covering urban and suburban environments from Russian cadastral map imagery
   - Both models output **bounding boxes** overlaid directly on the satellite tile in the app
 
 - For **spatial feature extraction**, I queried **OpenStreetMap via OSMnx** and assembled a custom tabular dataset of **464 labeled satellite locations** — each annotated with 15 spatial features and a binary legality label:
@@ -90,7 +90,7 @@ Three datasets feed into the pipeline:
 - Derived from global satellite imagery; companion to a Nature Communications study
 - 430 MB, globally diverse coverage
 
-**3. Illegal Buildings Detection Dataset** — for building detection (YOLOv7)
+**3. Buildings Detection Dataset** — for building detection (YOLOv7)
 - Published by Ostankovich et al. (2018)
 - 224×224 RGB satellite patches; two classes: `building` / `background`
 - Urban and suburban variety — high-rise, residential, complex architecture

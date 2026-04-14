@@ -1,4 +1,3 @@
-# Required for tile download
 import math
 import requests
 from PIL import Image
@@ -84,9 +83,6 @@ def fetch_tile(x, y, z, server="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={
         return None
 
 def fetch_and_save_tile(lat, lon, zoom, filename):
-    # if os.path.exists(filename):
-    #     print(f"✅ Tile already exists: {filename}")
-    #     return True
     x, y = deg2num(lat, lon, zoom)
     tile = fetch_tile(x, y, zoom)
     if tile:
@@ -99,14 +95,15 @@ def fetch_and_save_tile(lat, lon, zoom, filename):
     
 
 def download_class_model():
+    parent_dir = os.path.dirname(os.path.dirname(__file__))
+    model_dir = os.path.join(parent_dir, "model_wts")
     path = hf_hub_download(
         repo_id="EASYTOCODE99/SafetyModels",
         filename="classModel.h5",
-        cache_dir="model_wts"
+        cache_dir=model_dir
     )
     return path
 
-# def preprocess_image(img_path, target_size=(128, 128)):
 def preprocess_image(img_path, target_size=(224, 224)):
 
     img = Image.open(img_path).convert('RGB')
@@ -126,7 +123,10 @@ def predict_from_gps(lat, lon, row_num, zoom=17):
     path=download_class_model()
     model = load_model(path)
 
-    filename = f"Testing/test_row_{row_num}_tile.jpg"
+    parent_dir = os.path.dirname(os.path.dirname(__file__))
+    testing_dir = os.path.join(parent_dir, "Testing")
+    os.makedirs(testing_dir, exist_ok=True)
+    filename = os.path.join(testing_dir, f"test_row_{row_num}_tile.jpg")
     tile_success = fetch_and_save_tile(lat, lon, zoom, filename)
 
     if not tile_success:
@@ -137,7 +137,6 @@ def predict_from_gps(lat, lon, row_num, zoom=17):
     img_input = preprocess_image(filename)
     feature_input = feature_vector_from_dict(features)
 
-    # Model prediction
     prediction = model.predict([img_input, feature_input])
     print(f"✅ Prediction for GPS ({lat}, {lon}):", "Illegal" if prediction[0][0] > 0.5 else "Legal", f"(score: {prediction[0][0]:.4f})")
     return prediction[0][0]
