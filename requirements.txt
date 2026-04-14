@@ -12,7 +12,7 @@ pandas>=2.0.0
 geopandas>=1.0.0
 networkx>=3.1
 requests>=2.32.0
-opencv-python>=4.8.0
+opencv-python-headless
 torch==2.2.2
 torchvision==0.17.2
 tqdm==4.67.1
