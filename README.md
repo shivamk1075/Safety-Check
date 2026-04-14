@@ -193,6 +193,11 @@ _<img src="data/presentation/DetectionView.png" alt="Satellite tile with YOLO bo
 
 _<img src="data/presentation/ClassificationOutput.png" alt="Prediction score and legality verdict panel" width="70%"/>_
 
+### Live Demo
+ 
+A live deployment of the app is hosted on streamlit and accessible here:
+ 
+**🔗 [https://shivamk1075-safety-check-myui-2ajc0l.streamlit.app](https://shivamk1075-safety-check-myui-2ajc0l.streamlit.app)**
 ### Use
 
 To **run the Streamlit App**, clone the repository, install dependencies, and place your model weights in the correct directory:
