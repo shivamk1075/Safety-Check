@@ -15,7 +15,7 @@ from preds import predict_from_gps
 from combined import detect_objects
 
 
-st.title("DumpTrace")
+st.title("TerrainScan tool")
 st.markdown("Choose a location by selecting a point on the map.")
 
 st.markdown("Click on the map to drop a pin.")

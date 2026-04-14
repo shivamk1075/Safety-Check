@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import streamlit as st
 
-YOLOV7_PATH = os.path.join(os.path.dirname(__file__), "..", "yolov7")
+YOLOV7_PATH = os.path.join(os.path.dirname(__file__), "yolov7")
 sys.path.insert(0, YOLOV7_PATH)
 
 from yolov7.utils.datasets import letterbox
